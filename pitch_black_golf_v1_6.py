@@ -9,8 +9,9 @@ from helper import aprint
 from golfer import Golfer
 from course import Course
 from course import get_course_name
-from hole import Hole
-from hole import get_hole_description
+from hole import *
+# from hole import Hole
+# from hole import get_hole_description
 
 
 #region ascii_art
@@ -480,6 +481,8 @@ while curr_hole != max_holes+1:
     print("\n")
     print(get_course_name(course))
     print(get_hole_description(holes[curr_hole-1]))
+    print("\n")
+    
     print("\t[{}] {} {} {}\n".format(str(int(df.at[player_index, 'Rank'])),player, str(prefix), score),
     "\tSHOT {}\n".format(shot),
     "\t{} M TO PIN\n\n".format(left),
