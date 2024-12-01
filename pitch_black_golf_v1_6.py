@@ -4,31 +4,32 @@ import math
 import pandas as pd
 from tabulate import tabulate
 from faker import Faker
-from helper import tprint
-from helper import aprint
+from printer import tprint
+from printer import aprint
 from golfer import Golfer
-from course import Course
-from course import get_course_name
+from course import *
 from hole import *
-# from hole import Hole
-# from hole import get_hole_description
+from country import Country
+
 
 
 #region ascii_art
-#image = "                         .  .\n                     .          .\n      O>>         .                 o          |>\n     / \       .                               |\n     ´ /\    .                             _ _ | _ _\n      / /  .                                -- - --\n ^^^^^`^`^^\n"
-logo = "\n\n  ____ ___ _____ ____ _   _      \n |  _ \_ _|_   _/ ___| | | |     \n | |_) | |  | || |   | |_| |     \n |  __/| |  | || |___|  _  |     \n |_|  |___| |_| \____|_| |_|     \n  ____  _        _    ____ _  __ \n | __ )| |      / \  / ___| |/ / \n |  _ \| |     / _ \| |   | ' /  \n | |_) | |___ / ___ \ |___| . \  \n |____/|_____/_/   \_\____|_|\_\ \n   ____  ___  _     _____        \n  / ___|/ _ \| |   |  ___|_/\__  \n | |  _| | | | |   | |_  \    /  \n | |_| | |_| | |___|  _| /_  _\  \n  \____|\___/|_____|_|     \/    \n                                 \n\n"
-winner_img = "                  ___  __\n|  | | |\ | |\ | |__  |__)\n|/\| | | \| | \| |___ |  \ \n\n\n      .      o      .\n    - * -    \"    - * -\n      '   \O/    .  '\n           \|  - * -\n           /\    '\n          /  |\n    _ _ \ _____\_ _\n    \____|  1  |____\ \n    |               |"
-runnerup_img = "\n\n      .            .\n                    \n              .  '\n                  \n      o      \n     /V> _ _ _  \n     /| \ _____\_ _\n    \____|     |____\ \n    |  2             |"
-thirdplace_img = "\n\n      .            .\n                    \n              .  '\n                  \n                 o \n         _ _ _  /V\  \n     _ _\ _____\ |\ \n    \____|     |____\\\n    |             3 |"
-
 world_map = "               ,_   .  ._. _.  .\n           , _-\','|~\~      ~/      ;-'_   _-'     ,;_;_,    ~~-\n  /~~-\_/-'~'--' \~~| ',    ,'      /  / ~|-_\_/~/~      ~~--~~~~'--_\n  /              ,/'-/~ '\ ,' _  , '|,'|~                   ._/-, /~\n  ~/-'~\_,       '-,| '|. '   ~  ,\ /'~                /    /_  /~\n.-~      '|        '',\~|\       _\~     ,_  ,               /|\n          '\        /'~          |_/~\\,-,~  \ \"         ,_,/ |\n           |       /            ._-~'\_ _~|              \ ) /\n            \   __-\           '/      ~ |\  \_          /  ~\n  .,         '\ |,  ~-_      - |          \\_' ~|  /\  \~ ,\n               ~-_'  _;       '\           '-,   \,' /\/  |\n                 '\_,~'\_       \_ _,       /'    '  |, /|'\n                   /     \_       ~ |      /         \  ~'; -,_.\n                   |       ~\        |    |  ,        '-_, ,; ~ ~\ \n                    \,      /        \    / /|            ,-, ,   -,\n                     |    ,/          |  |' |/          ,-   ~ \   '.\n                    ,|   ,/           \ ,/              \       |\n                    /    |             ~                 -~~-, /   _\n                    |  ,-'                                    ~    /\n                    / ,'                                      ~\n                    ',|  ~\n                      ~'"
 #endregion
 
-region = ["no-NO","sv_SE","fi_FI","dk_DK","fr-FR","es-ES","de_DE","it_IT","en_UK","en-AU","en_US","en-IN","en-CA","es-MX"]
+#Countries
+countries = []
+countries.append(Country("Norway","no-NO"))
+countries.append(Country("Sweden","sv-SE"))
+countries.append(Country("Finland","fi-FI"))
+countries.append(Country("Denmark","dk-DK"))
+
+
+region = ["uno-NO","sv_SE","fi_FI","dk_DK","fr-FR","es-ES","de_DE","it_IT","en_UK","en-AU","en_US","en-IN","en-CA","es-MX"]
 selection = 0
 
 #print(world_map)
-aprint("beach.ascii")
+aprint("assets/beach.ascii")
 print("\n\n---WHERE DO YOU WANT TO PLAY?---\n\n 1. Norway\n 2. Sweden\n 3. Finland\n 4. Denmark\n 5. France\n 6. Spain\n 7. Germany\n 8. Italy\n 9. Great Britan\n 10. Australia\n 11. USA\n 12. India\n 13. Canada\n 14. Mexico\n")
 
 while selection < 1 or selection > len(region):
@@ -216,7 +217,7 @@ def ai_score(skill):
         return skill[random.randint(0,17)]
 
 
-#Leaderboard.
+#Tournament Leaderboard.
 golfers = []
 
 _rank = []
@@ -366,8 +367,8 @@ def get_hole_progress_text(shot, par):
 
 #Welcome screen
 #print("\n"+logo)
-aprint("logo.ascii")
-aprint("golfer.ascii")
+aprint("assets/logo.ascii")
+aprint("assets/golfer.ascii")
 #print("\n"+image)
  
 print("***PITCH BLACK GOLF version 1.6 (c) PAPA QUARK  -  MAKING DEEP STUFF SINCE 1979***\n\n")
@@ -566,16 +567,12 @@ while curr_hole != max_holes+1:
 
     time.sleep(0.5) 
  
-
-
- 
     print("## "+commentary[curr_hole-1]+" ##")
-
     
     time.sleep(2.2)
     
     curr_hole += 1
-    if curr_hole <= max_holes:                                       #next hole
+    if curr_hole <= max_holes:                                #next hole
         left = holes[curr_hole-1].length                      #next hole distance left
         shot = 1                                              #reset shot
 
@@ -589,13 +586,16 @@ time.sleep(0.2)
 
 print(player+" rank: "+str(int(df.at[player_index, 'Rank'])))
 if df.at[player_index, 'Rank'] == 1.0:
-        print(winner_img)
+        aprint("assets/podium_1.ascii")
 
 if df.at[player_index, 'Rank'] == 2.0:
-        print(runnerup_img)
+        aprint("assets/podium_2.ascii")
     
 if df.at[player_index, 'Rank'] == 3.0:
-        print(thirdplace_img)
+        aprint("assets/podium_3.ascii")
+
+if df.at[player_index, 'Rank'] > 3.0:
+        aprint("assets/podium_4.ascii")
 
 
 tprint("\n\nGAME OVER THANK YOU FOR PLAYING",0.4)
