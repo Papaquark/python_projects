@@ -4,7 +4,7 @@ import random
 class Course:
     def __init__(self, fake):
         self.city = "{}".format(fake.city())
-        self.name = "{} {} {}".format(self.city,random.choice(["Creek",
+        self.name = "{} {}".format(random.choice(["Creek",
                                                                "Cedar",
                                                                "Well",
                                                                "Mountain",

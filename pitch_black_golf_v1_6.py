@@ -19,24 +19,43 @@ world_map = "               ,_   .  ._. _.  .\n           , _-\','|~\~      ~/  
 
 #Countries
 countries = []
-countries.append(Country("Norway","no-NO"))
-countries.append(Country("Sweden","sv-SE"))
-countries.append(Country("Finland","fi-FI"))
-countries.append(Country("Denmark","dk-DK"))
+countries.append(Country("Norway","no-NO", "NOR"))
+countries.append(Country("Sweden","sv-SE", "SWE"))
+countries.append(Country("Finland","fi-FI", "FIN"))
+countries.append(Country("Denmark","dk-DK", "DAN"))
+countries.append(Country("France","fr-FR", "FRA"))
+countries.append(Country("Spain","es-ES", "ESP"))
+countries.append(Country("Germany","de-DE", "GER"))
+countries.append(Country("Italy","it-IT", "IT"))
+countries.append(Country("United Kingdom","en-UK", "UK"))
+countries.append(Country("Australia","en-AU", "AUS"))
+countries.append(Country("USA","en-US", "USA"))
+countries.append(Country("India","en-IN", "IND"))
+countries.append(Country("Canada","en-CA", "CAN"))
+countries.append(Country("Mexico","es-MX", "MEX"))
 
 
-region = ["uno-NO","sv_SE","fi_FI","dk_DK","fr-FR","es-ES","de_DE","it_IT","en_UK","en-AU","en_US","en-IN","en-CA","es-MX"]
-selection = 0
+#region = ["uno-NO","sv_SE","fi_FI","dk_DK","fr-FR","es-ES","de_DE","it_IT","en_UK","en-AU","en_US","en-IN","en-CA","es-MX"]
+
+
 
 #print(world_map)
 aprint("assets/beach.ascii")
-print("\n\n---WHERE DO YOU WANT TO PLAY?---\n\n 1. Norway\n 2. Sweden\n 3. Finland\n 4. Denmark\n 5. France\n 6. Spain\n 7. Germany\n 8. Italy\n 9. Great Britan\n 10. Australia\n 11. USA\n 12. India\n 13. Canada\n 14. Mexico\n")
 
-while selection < 1 or selection > len(region):
+i=1
+for country in countries:
+    print("{}.\t {}".format(i, country.name))
+    i+=1
+
+#print("\n\n---WHERE DO YOU WANT TO PLAY?---\n\n 1. Norway\n 2. Sweden\n 3. Finland\n 4. Denmark\n 5. France\n 6. Spain\n 7. Germany\n 8. Italy\n 9. Great Britan\n 10. Australia\n 11. USA\n 12. India\n 13. Canada\n 14. Mexico\n")
+
+selection = 0
+
+while selection < 1 or selection > len(countries):
     selection = int(input(": "))
 
+locale = countries[selection-1].region
 
-locale = region[selection-1]
 print(locale)
 fake = Faker(locale)
 

@@ -34,7 +34,7 @@ def get_hole_description(hole):
                                                                "There is deep forest surrounding the hole.",
                                                                "The rigth side is lined with posh vacation homes.",
                                                                "Two huge trees make up a great gate for aming.",
-                                                               "There is a lake with lillypads behind the green",
+                                                               "There is a lake with lillypads behind the green.",
                                                                "A small creek runs across the fairway.",
                                                                "You can see the clubhouse from here."]))
     hole_description = hole_header + "\n" + hole_description +" "+ hole_description_additional
