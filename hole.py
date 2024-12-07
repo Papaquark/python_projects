@@ -15,7 +15,8 @@ def get_hole_description(hole):
                                                                  "unique",
                                                                  "subtle",
                                                                  "agressive",
-                                                                 "mediocre"]),
+                                                                 "mediocre",
+                                                                 "wide"]),
                                                  random.choice(["dogleg",
                                                                 "signature",
                                                                 "challenging",
@@ -26,7 +27,8 @@ def get_hole_description(hole):
                                                                 "abyss",
                                                                 "beach",
                                                                 "coastline",
-                                                                "seaside"]))
+                                                                "seaside",
+                                                                "rocky"]))
     hole_description_additional = "{}".format(random.choice(["The left side is lined with pinetrees.",
                                                                "There is an old church in the far distance.",
                                                                "The hole is surrounded by an azure blue lake.",
@@ -36,7 +38,11 @@ def get_hole_description(hole):
                                                                "Two huge trees make up a great gate for aming.",
                                                                "There is a lake with lillypads behind the green.",
                                                                "A small creek runs across the fairway.",
-                                                               "You can see the clubhouse from here."]))
+                                                               "You can see the clubhouse from here.",
+                                                               "A white picket fence makes for a good aim.",
+                                                               "The tall grass on the left looks dangerous.",
+                                                               "You can't see the green, it's a 'blind' hole.",
+                                                               "A stone windmill makes the hole special."]))
     hole_description = hole_header + "\n" + hole_description +" "+ hole_description_additional
 
     return hole_description
