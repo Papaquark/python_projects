@@ -19,7 +19,11 @@ class Course:
                                                                "Swamp",
                                                                "Lake",
                                                                "Outback",
-                                                               "Marshlands"]), 
+                                                               "Marshlands",
+                                                               "Woodlands",
+                                                               "Wasteland",
+                                                               "Thundra",
+                                                               "Fields"]), 
                                                 random.choice(["Golf Club",
                                                                "Country Club",
                                                                "Members Club",
@@ -30,7 +34,11 @@ class Course:
                                                                "Inbread association",
                                                                "Gentlemens hangout",
                                                                "Waterpolo and Golf",
-                                                               "Canasta and Golf"]))
+                                                               "Canasta and Golf",
+                                                               "Association",
+                                                               "Community",
+                                                               "Group",
+                                                               "Hickory intrest club"]))
 
 def get_course_name(course):
     return "\t^^^^ {} - {} ^^^^".format(course.name.upper(), course.city.upper())
